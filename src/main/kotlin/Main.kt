@@ -1,26 +1,22 @@
 fun main() {
-    println("Приложение меломан")
-    var amountSum = 100000
-    var skidka = 100 //скидка при покупку от 1001 до 10000 рублей
-    var skidkaOtOneCaus = amountSum - (amountSum / 100) * 5 // 5% скидка 
-    var OnePro = skidkaOtOneCaus / 100 // дополнительная скидка
+    println("Приложение мeломан")
+    val meloman = true
+    val acountCum = 100_000
+    val skidka = 100  //скидка при покупку от 1001 до 10000 рублей
+    val discountStart = 1_000
+    val percentDiscount = 0.05 * acountCum
+    val percentDiscountStart = 10_000 // сумма с которой начинается скидка 5 процентов
+    val usuallyCus = 0.99 // дополнительная скидка
 
-    if (amountSum >= 0 && amountSum <= 1000) {
-        println("Скидка не предоставляется")
-    } else if (amountSum >= 1001 && amountSum <= 10_000) {
-        println("Скидка составит 100 рублей")
-        print("Сумма покупки вместе со скидкой составит ")
-        print(amountSum - 100)
-        print(" рублей")
-    } else if (amountSum >= 10_001) {
-        println("Вам предоставлена скидка 5%")
-        print("Сумма покупки вместе с 5% скидкой составит ")
-        print("$skidkaOtOneCaus")
-        println(" рублей")
-        print("Дополнительная скидка 1% постоянным покупателям составит $OnePro")
-        println(" рублей")
-        print("Общая сумма со всеми скидками составит " )
-        print(skidkaOtOneCaus - OnePro )
-        print(" рублей")
-    } else println("Ошибка при указании суммы")
+    val result = if (!meloman) {
+        if (acountCum > percentDiscountStart) acountCum - percentDiscount
+        else if (acountCum > discountStart) acountCum - skidka
+        else acountCum
+    } else {
+        if (acountCum > percentDiscountStart) (acountCum - percentDiscount) * usuallyCus
+        else if (acountCum > discountStart) (acountCum - skidka) * usuallyCus
+        else acountCum * usuallyCus
+    }
+    println("Итого в сумме $result")
 }
+
